@@ -119,6 +119,18 @@ async def on_message(message: discord.Message):
         return
 
     bot_mention = f"<@{client.user.id}>"
+    
+    try:
+        # typing() 컨텍스트 매니저 대신 한 번만 전송
+        await message.channel.trigger_typing()
+
+        reply = await call_gemini(message.author.id, content)
+
+        for i in range(0, len(reply), 2000):
+            await message.channel.send(reply[i:i+2000])
+
+    except Exception as e:
+        await message.channel.send(f"⚠️ 오류가 발생했어요: `{e}`")
 
     # ── 커맨드 처리 ────────────────────────────────────────────────────────
 
