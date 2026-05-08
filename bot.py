@@ -14,7 +14,7 @@ BOT_NAME       = os.getenv("BOT_NAME", "봇").strip()
 genai.configure(api_key=GEMINI_API_KEY)
 
 model = genai.GenerativeModel(
-    model_name="gemini-2.5-flash-preview-05-20",
+    model_name="gemini-2.5-flash-lite",
     system_instruction=(
         f"너의 이름은 '{BOT_NAME}'이야. "
         "디스코드 채널에서 사용자들을 도와주는 친근한 AI 어시스턴트야. "
